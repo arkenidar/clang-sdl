@@ -33,12 +33,12 @@
 		<Compiler>
 			<Add option="-Wall" />
 			<Add option="-DOS_WINDOWS" />
-			<Add directory="sdl-dev-mingw/include" />
+			<Add directory="C:/msys64/mingw64/include" />
 		</Compiler>
 		<Linker>
-			<Add library="sdl2" />
-			<Add library="user32" />
-			<Add directory="sdl-dev-mingw/lib" />
+			<Add library="SDL2" />
+			<Add library="SDL2_image" />
+			<Add directory="C:/msys64/mingw64/lib" />
 		</Linker>
 		<Unit filename="../assets/horse.bmp" />
 		<Unit filename="../src/main.c">

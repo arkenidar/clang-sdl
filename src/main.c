@@ -5,7 +5,8 @@
 #include <stdio.h>
 #include <time.h>
 
-#include "SDL.h"
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
 
 typedef struct Sprite
 {
@@ -25,7 +26,7 @@ Sprite LoadSprite(const char* file, SDL_Renderer* renderer)
     SDL_Surface* temp;
 
     /* Load the sprite image */
-    temp = SDL_LoadBMP(file);
+    temp = IMG_Load(file);
     if (temp == NULL)
 	{
         fprintf(stderr, "Couldn't load %s: %s\n", file, SDL_GetError());
@@ -64,7 +65,7 @@ int app_main( /* int argc, char *argv[] */ )
         exit(2);
     }
 
-	Sprite sprite = LoadSprite("assets/horse.bmp", renderer);
+	Sprite sprite = LoadSprite("assets/horse.png", renderer);
     if(sprite.texture == NULL){
         exit(2);
     }
