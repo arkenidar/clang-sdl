@@ -10,25 +10,25 @@
 
 typedef struct Sprite
 {
-	SDL_Texture* texture;
-	Uint16 w;
-	Uint16 h;
+    SDL_Texture* texture;
+    Uint16 w;
+    Uint16 h;
 } Sprite;
 
 /* Adapted from SDL's testspriteminimal.c */
 Sprite LoadSprite(const char* file, SDL_Renderer* renderer)
 {
-	Sprite result;
-	result.texture = NULL;
-	result.w = 0;
-	result.h = 0;
+    Sprite result;
+    result.texture = NULL;
+    result.w = 0;
+    result.h = 0;
 
     SDL_Surface* temp;
 
     /* Load the sprite image */
     temp = IMG_Load(file);
     if (temp == NULL)
-	{
+    {
         fprintf(stderr, "Couldn't load %s: %s\n", file, SDL_GetError());
         return result;
     }
@@ -49,11 +49,11 @@ Sprite LoadSprite(const char* file, SDL_Renderer* renderer)
 
 void draw(SDL_Window* window, SDL_Renderer* renderer, const Sprite sprite)
 {
-	int w, h;
-	SDL_GetWindowSize(window, &w, &h);
-	SDL_Rect destRect = {w/2 - sprite.w/2, h/2 - sprite.h/2, sprite.w, sprite.h};
-	/* Blit the sprite onto the screen */
-	SDL_RenderCopy(renderer, sprite.texture, NULL, &destRect);
+    int w, h;
+    SDL_GetWindowSize(window, &w, &h);
+    SDL_Rect destRect = {w/2 - sprite.w/2, h/2 - sprite.h/2, sprite.w, sprite.h};
+    /* Blit the sprite onto the screen */
+    SDL_RenderCopy(renderer, sprite.texture, NULL, &destRect);
 }
 
 int app_main( /* int argc, char *argv[] */ )
@@ -65,7 +65,7 @@ int app_main( /* int argc, char *argv[] */ )
         exit(2);
     }
 
-	Sprite sprite = LoadSprite("assets/horse.png", renderer);
+    Sprite sprite = LoadSprite("assets/horse.png", renderer);
     if(sprite.texture == NULL){
         exit(2);
     }
@@ -74,27 +74,27 @@ int app_main( /* int argc, char *argv[] */ )
     Uint8 done = 0;
     SDL_Event event;
     while(!done)
-	{
+    {
         /* Check for events */
         while(SDL_PollEvent(&event))
-		{
+        {
             if(event.type == SDL_QUIT || event.type == SDL_KEYDOWN || event.type == SDL_FINGERDOWN)
-			{
+            {
                 done = 1;
             }
         }
 
 
-		/* Draw a gray background */
-		SDL_SetRenderDrawColor(renderer, 0xA0, 0xA0, 0xA0, 0xFF);
-		SDL_RenderClear(renderer);
+        /* Draw a gray background */
+        SDL_SetRenderDrawColor(renderer, 0xA0, 0xA0, 0xA0, 0xFF);
+        SDL_RenderClear(renderer);
 
-		draw(window, renderer, sprite);
+        draw(window, renderer, sprite);
 
-		/* Update the screen! */
-		SDL_RenderPresent(renderer);
+        /* Update the screen! */
+        SDL_RenderPresent(renderer);
 
-		SDL_Delay(10);
+        SDL_Delay(10);
     }
 
     exit(0);
