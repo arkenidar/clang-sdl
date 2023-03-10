@@ -61,7 +61,7 @@ int app_main( /* int argc, char *argv[] */ )
     SDL_Window *window;
     SDL_Renderer *renderer;
 
-    if(SDL_CreateWindowAndRenderer(500, 500, 0, &window, &renderer) < 0){
+    if(SDL_CreateWindowAndRenderer(400, 400, 0, &window, &renderer) < 0){
         exit(2);
     }
 
